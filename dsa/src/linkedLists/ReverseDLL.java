@@ -1,9 +1,7 @@
 package linkedLists;
 
+public class ReverseDLL {
 
-
-public class DoublyLinkedList {
-	
 	static NodeDLL head, curr;
 	
 	static void insertAtEnd(int x) {
@@ -35,36 +33,26 @@ public class DoublyLinkedList {
 		c.prev=temp;
 	}	
 	
-	static void delete(int x) {
+	static void reverse() {
 		NodeDLL c=head;
-		NodeDLL current=head;
-		if(head==null || c.next==null) {
-			if(c.data==x || c==null) {
-				head=null;
-			}
+		if(c==null) {
+			curr=c;
+			return;
 		}
-		while(c.next!=null) {
-			if(c.data==x) {
-				break;
-			}
-			current=c;
-			c=c.next;
+		if(c.next==null) {
+			curr=head;
+			return;
 		}
-		
-		if(c==head) {
-			head=c.next;
-			head.prev=null;
+		NodeDLL prev=null;
+		NodeDLL nextt=null;
+		while(c!=null) {
+			nextt=c.next;
+			c.next=prev;
+			c.prev=nextt;
+			prev=c;
+			c=nextt;
 		}
-		else if(c.next==null) {
-			if(c.data==x) {
-				current.next=null;
-			}
-			System.out.println(c.data);
-		}
-		else {
-		current.next=c.next;
-		c.next.prev=current;
-		}
+		curr=prev;
 	}
 	
 	public static void main(String[] args) {
@@ -76,14 +64,18 @@ public class DoublyLinkedList {
 		insertAtEnd(30);
 		insertAtBegin(5);
 		insertAtMiddle(15,2);
-//		delete(5);
-//		delete(15);
-//		delete(30);
-//		delete(8);
 		curr=head;
+		while(curr!=null) {
+			System.out.println(curr.data);
+			curr=curr.next;
+		}
+		reverse();
+		System.out.println("After");
+//		curr=head;
 		while(curr!=null) {
 		System.out.println(curr.data);
 		curr=curr.next;
 		}
 	}
+
 }

@@ -2,14 +2,7 @@ package linkedLists;
 
 import java.util.Scanner;
 
-class Node{
-	Node next;
-	int data;
-	Node(int x){
-		data=x;
-		next=null;
-	}
-}
+
 
 public class SingleLinkedList {
 	
