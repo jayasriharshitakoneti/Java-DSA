@@ -8,6 +8,25 @@ public class SingleLinkedList {
 	
 	static Node head=null;
 	
+	static void removeDups() {
+		Node curr=head;
+		if(curr==null) {
+			return;
+		}
+		if(curr.next==null) {
+			return;
+		}
+		while(curr.next!=null) {
+			if(curr.data==curr.next.data) {
+				curr.next=curr.next.next;
+			}
+			else {
+				curr=curr.next;
+			}
+		}
+		return;
+	}
+	
 	static void print(Node curr) {
 		if(curr==null) {
 			return;
@@ -98,7 +117,7 @@ public class SingleLinkedList {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		head= new Node(10);
-		Node a=new Node(5);
+		Node a=new Node(15);
 		Node b=new Node(20);
 		
 		a.next=b;
@@ -109,17 +128,25 @@ public class SingleLinkedList {
 		
 		insertEnd(15);
 		insertMiddle(15,2);
+		insertMiddle(15,2);
+		insertMiddle(15,2);
 		delete(2);
 		deleteEnd();
+		insertEnd(20);
+		insertEnd(20);
+		insertBegin(5);
+//		insertEnd(25);
 		Node curr=head;
-		print(curr);
-		System.out.println();		
-		System.out.println(1+searchIterative(10,-1));
-		System.out.println(1+searchRecursive(20,0,head));
-//		while(curr!=null) {
-//			System.out.println(curr.data);
-//			curr=curr.next;
-//		}
+//		print(curr);
+		removeDups();
+//		System.out.println();		
+//		System.out.println();
+//		System.out.println(1+searchIterative(10,-1));
+//		System.out.println(1+searchRecursive(20,0,head));
+		while(curr!=null) {
+			System.out.println(curr.data);
+			curr=curr.next;
+		}
 	}
 
 }
